@@ -24,6 +24,11 @@
         socket.on('nuevo-mensaje', function (payload) {
             console.log('Escuchando: ', payload);
         })
+
+        socket.on('active-values', function (values) {
+            console.clear();
+            console.log('Escuchando activos: ', values);
+        })
         
     </script>
 </body>

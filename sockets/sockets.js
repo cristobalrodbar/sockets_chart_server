@@ -6,7 +6,7 @@ const inputValues = new InputValues();
 console.log('init server');
 inputValues.addInputValue(new InputValue('Belanova'));
 inputValues.addInputValue(new InputValue('Nirvana'));
-inputValues.addInputValue(new InputValue('Los Acoste'));
+inputValues.addInputValue(new InputValue('Los Acosta'));
 inputValues.addInputValue(new InputValue('Mi Banda el Mexicano'));
 
 
@@ -31,7 +31,14 @@ io.on('connection', client => {
         console.log(payload);
         inputValues.voteInputValue(payload.id);
         io.emit('active-values', inputValues.getInputValues());
+    });
 
+    
+    client.on('add-input', (payload) => {
+        console.log(payload);
+        const newInput = new InputValue(payload.name);
+        inputValues.addInputValue(newInput);
+        io.emit('active-values', inputValues.getInputValues());
     });
 
     /* client.on('emitir-mensaje', (payload) => {

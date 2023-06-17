@@ -41,6 +41,15 @@ io.on('connection', client => {
         io.emit('active-values', inputValues.getInputValues());
     });
 
+        
+    client.on('delete-input', (payload) => {
+        console.log(payload);
+        //const newInput = new InputValue(payload.id);
+        inputValues.deleteInputValue(payload.id);
+        io.emit('active-values', inputValues.getInputValues());
+    });
+
+
     /* client.on('emitir-mensaje', (payload) => {
         //console.log(payload);
         //io.emit('nuevo-mensaje', payload);// emite a todos
